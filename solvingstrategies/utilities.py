@@ -7,11 +7,13 @@ class Utilities:
         val_pos_start = None
         positions = []
         for idx, v in enumerate(values):
-            if v == value and not val_pos_start:
+            if v == value and val_pos_start is None:
                 val_pos_start = idx
-            elif val_pos_start and v != value:
+            elif val_pos_start is not None and v != value:
                 positions.append((val_pos_start, idx - 1))
                 val_pos_start = None
+        if val_pos_start is not None:
+            positions.append((val_pos_start, len(values) - 1))
         return positions
 
     @staticmethod
