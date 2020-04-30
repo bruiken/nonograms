@@ -10,7 +10,7 @@ class SimpleSpaces(BaseStrategy):
     def apply_strategy(self, values, constraints):
         scores = self.board.get_score(values)
         new_vals = list(values)
-        if len(constraints) == len(scores):
+        if Utilities.all_blocks_present(values, constraints):
             taken_spots = [v != Board.Unknown for v in values]
             diffs = [c - s for s, c in zip(scores, constraints)]
             score_positions = Utilities.get_positions_of_scores(values)
