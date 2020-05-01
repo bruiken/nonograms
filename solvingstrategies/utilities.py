@@ -30,6 +30,8 @@ class Utilities:
         score_positions = Utilities.get_positions_of_scores(values)
         unknown_positions = Utilities.get_unknown_positions(values)
         last_score_end = -999
+        if scores == constraints:  # simplest case where the scores are all done already
+            return True
         if len(scores) == len(constraints):
             for idx, (s_s, s_e) in enumerate(score_positions):
                 if Utilities.constraint_fit_in_unknown(constraints[idx], unknown_positions, last_score_end + 1, s_s - 2):
