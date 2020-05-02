@@ -11,6 +11,8 @@ class TestUtilities(TestCase):
         self.assertFalse(Utilities.all_blocks_present([Board.Cross, Board.Empty, Board.Empty], [1, 1]))
         self.assertFalse(Utilities.all_blocks_present([Board.Unknown, Board.Unknown, Board.Cross, Board.Unknown,
                                                        Board.Cross, Board.Unknown, Board.Unknown], [1, 3]))
+        self.assertTrue(Utilities.all_blocks_present([Board.Unknown, Board.Unknown, Board.Cross, Board.Unknown,
+                                                      Board.Cross, Board.Cross, Board.Unknown], [1, 3]))
         self.assertTrue(Utilities.all_blocks_present([Board.Unknown, Board.Unknown, Board.Cross, Board.Empty,
                                                       Board.Cross, Board.Unknown, Board.Unknown], [1, 3]))
         self.assertTrue(Utilities.all_blocks_present([Board.Cross, Board.Empty, Board.Cross, Board.Unknown,
