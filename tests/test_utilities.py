@@ -1,5 +1,5 @@
 from unittest import TestCase
-from solvingstrategies.utilities import Utilities
+from solvingstrategies import Utilities
 from board import Board
 
 
