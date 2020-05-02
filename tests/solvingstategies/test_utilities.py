@@ -41,3 +41,15 @@ class TestUtilities(TestCase):
         self.assertListEqual(Utilities.get_unknown_positions([Board.Cross, Board.Unknown, Board.Cross]), [(1, 1)])
         self.assertListEqual(Utilities.get_unknown_positions([Board.Unknown, Board.Cross, Board.Unknown]),
                              [(0, 0), (2, 2)])
+
+    def test_constraint_fit_in_unknown(self):
+        unknown_pos = Utilities.get_unknown_positions([Board.Unknown, Board.Unknown, Board.Cross, Board.Unknown,
+                                                       Board.Empty, Board.Cross, Board.Cross, Board.Unknown])
+        self.assertFalse(Utilities.constraint_fit_in_unknown(3, unknown_pos, 0, 2))
+        self.assertTrue(Utilities.constraint_fit_in_unknown(2, unknown_pos, 0, 2))
+        self.assertFalse(Utilities.constraint_fit_in_unknown(2, unknown_pos, 1, 2))
+        self.assertTrue(Utilities.constraint_fit_in_unknown(1, unknown_pos, 0, 0))
+        self.assertFalse(Utilities.constraint_fit_in_unknown(2, unknown_pos, 0, 0))
+        self.assertTrue(Utilities.constraint_fit_in_unknown(1, unknown_pos, 0, 7))
+        self.assertFalse(Utilities.constraint_fit_in_unknown(8, unknown_pos, 0, 7))
+        self.assertFalse(Utilities.constraint_fit_in_unknown(2, unknown_pos, 3, 4))
