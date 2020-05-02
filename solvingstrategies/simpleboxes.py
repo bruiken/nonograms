@@ -18,9 +18,9 @@ class SimpleBoxes(BaseStrategy):
         return result
 
     @staticmethod
-    def _check_overlap(values):
+    def _check_overlap(values, values_reversed):
         result = []
-        for fst, snd in zip(values, reversed(values)):
+        for fst, snd in zip(values, values_reversed):
             if fst == snd and fst != -1:
                 result.append(Board.Cross)
             else:
@@ -30,6 +30,7 @@ class SimpleBoxes(BaseStrategy):
     def apply_strategy(self, values, constraints):
         if all([v == Board.Unknown for v in values]):
             row = SimpleBoxes._empty_constraint_application(values, constraints)
-            return SimpleBoxes._check_overlap(row)
+            row_reverse = reversed(SimpleBoxes._empty_constraint_application(values, reversed(constraints)))
+            return SimpleBoxes._check_overlap(row, row_reverse)
         else:
             return values
