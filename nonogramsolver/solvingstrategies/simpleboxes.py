@@ -7,10 +7,10 @@ class SimpleBoxes(BaseStrategy):
         super().__init__(board)
 
     @staticmethod
-    def _empty_constraint_application(values, constraints):
+    def _empty_constraint_application(values, named_constraints):
         result = [-1 for _ in range(len(values))]
         cur_idx = 0
-        for i, constraint in enumerate(constraints):
+        for i, constraint in named_constraints:
             if cur_idx > 0:
                 cur_idx += 1
             for j in range(cur_idx, cur_idx + constraint):
@@ -29,8 +29,9 @@ class SimpleBoxes(BaseStrategy):
 
     def apply_strategy(self, values, constraints):
         if all([v == Board.Unknown for v in values]):
-            row = SimpleBoxes._empty_constraint_application(values, constraints)
-            row_reverse = reversed(SimpleBoxes._empty_constraint_application(values, reversed(constraints)))
+            named_constraints = [(i, c) for i, c in enumerate(constraints)]
+            row = SimpleBoxes._empty_constraint_application(values, named_constraints)
+            row_reverse = reversed(SimpleBoxes._empty_constraint_application(values, reversed(named_constraints)))
             return SimpleBoxes._check_overlap(row, row_reverse)
         else:
             return values
