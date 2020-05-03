@@ -1,0 +1,2 @@
+from nonogramsolver.solvingstrategies.simpleboxes import SimpleBoxes
+from nonogramsolver.solvingstrategies.simplespaces import SimpleSpaces

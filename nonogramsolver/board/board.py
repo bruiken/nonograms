@@ -1,4 +1,4 @@
-from exceptions import InvalidValueError
+from nonogramsolver.exceptions import InvalidValueError
 
 
 class Board:

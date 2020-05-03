@@ -1,5 +1,5 @@
-from solvingstrategies.basestrategy import BaseStrategy
-from solvingstrategies.utilities import Utilities
+from nonogramsolver.solvingstrategies.basestrategy import BaseStrategy
+from nonogramsolver.solvingstrategies.utilities import Utilities
 
 
 class Forcing(BaseStrategy):

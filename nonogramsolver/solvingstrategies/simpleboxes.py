@@ -1,5 +1,5 @@
-from solvingstrategies.basestrategy import BaseStrategy
-from board import Board
+from nonogramsolver.solvingstrategies.basestrategy import BaseStrategy
+from nonogramsolver.board import Board
 
 
 class SimpleBoxes(BaseStrategy):

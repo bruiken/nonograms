@@ -1,6 +1,6 @@
 from unittest import TestCase
-from board import Board
-from exceptions import InvalidValueError
+from nonogramsolver.board import Board
+from nonogramsolver.exceptions import InvalidValueError
 
 
 class TestBoard(TestCase):

@@ -1,6 +1,6 @@
 from unittest import TestCase
-from solvingstrategies import Utilities
-from board import Board
+from nonogramsolver.solvingstrategies.utilities import Utilities
+from nonogramsolver.board import Board
 
 
 class TestUtilities(TestCase):

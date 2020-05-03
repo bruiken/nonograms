@@ -1,4 +1,4 @@
-from solvingstrategies.basestrategy import BaseStrategy
+from nonogramsolver.solvingstrategies.basestrategy import BaseStrategy
 
 
 class Punctuating(BaseStrategy):

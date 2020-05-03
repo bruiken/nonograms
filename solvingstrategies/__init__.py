@@ -1,2 +1,0 @@
-from solvingstrategies.simpleboxes import SimpleBoxes
-from solvingstrategies.simplespaces import SimpleSpaces

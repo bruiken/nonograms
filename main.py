@@ -1,5 +1,5 @@
-from board import BoardReader, PrintBoard
-from solvingstrategies import SimpleBoxes, SimpleSpaces
+from nonogramsolver.board import BoardReader, PrintBoard
+from nonogramsolver.solvingstrategies import SimpleBoxes, SimpleSpaces
 
 
 if __name__ == '__main__':

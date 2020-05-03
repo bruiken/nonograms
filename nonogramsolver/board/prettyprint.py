@@ -1,4 +1,4 @@
-from board.board import Board
+from nonogramsolver.board.board import Board
 
 
 class PrintBoard:

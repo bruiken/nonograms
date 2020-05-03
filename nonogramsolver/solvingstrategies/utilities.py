@@ -1,4 +1,4 @@
-from board import Board
+from nonogramsolver.board import Board
 
 
 class Utilities:

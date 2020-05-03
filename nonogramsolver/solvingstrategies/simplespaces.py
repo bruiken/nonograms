@@ -1,6 +1,6 @@
-from solvingstrategies.basestrategy import BaseStrategy
-from board import Board
-from solvingstrategies.utilities import Utilities
+from nonogramsolver.solvingstrategies.basestrategy import BaseStrategy
+from nonogramsolver.board import Board
+from nonogramsolver.solvingstrategies.utilities import Utilities
 
 
 class SimpleSpaces(BaseStrategy):
