@@ -12,10 +12,11 @@ class BoardReader:
 
     def get_board(self):
         data = self._get_board_data()
-        board = Board(data['width'], data['height'],
-                      data['constraints']['rows'],
-                      data['constraints']['columns'])
-        for val in data['values']:
-            board_val = Board.Cross if val['value'] else Board.Empty
-            board.set_position(val['x'], val['y'], board_val)
-        return board
+        try:
+            board = Board(data['width'], data['height'], data['constraints']['rows'], data['constraints']['columns'])
+            for val in data['values']:
+                board_val = Board.Cross if val['value'] else Board.Empty
+                board.set_position(val['x'], val['y'], board_val)
+            return board
+        except KeyError as e:
+            raise InvalidBoardFile('The file does not contain the value \'{}\''.format(e.args[0]))

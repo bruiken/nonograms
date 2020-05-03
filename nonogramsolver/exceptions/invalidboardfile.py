@@ -1,0 +1,2 @@
+class InvalidBoardFile(Exception):
+    pass

@@ -1,1 +1,2 @@
 from nonogramsolver.exceptions.invalidvalueerror import InvalidValueError
+from nonogramsolver.exceptions.invalidboardfile import InvalidBoardFile
