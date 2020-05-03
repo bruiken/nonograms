@@ -26,7 +26,7 @@ class BoardWriter:
         result = []
         for row in range(self.board.get_width()):
             for col in range(self.board.get_height()):
-                value = self.board.get_value(col, row)
+                value = self.board.get_value(row, col)
                 if value != Board.Unknown:
                     result.append({
                         'x': col,
