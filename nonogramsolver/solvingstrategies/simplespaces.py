@@ -27,7 +27,7 @@ class SimpleSpaces(BaseStrategy):
         :param constraints: the constraints put on the values.
         :return: The new values after the application of the algorithm.
         """
-        scores = self.board.get_score(values)
+        scores = Board.get_score(values)
         new_vals = list(values)
         if Utilities.all_blocks_present(values, constraints):  # only apply when all blocks are present
             taken_spots = [v != Board.Unknown for v in values]  # array to keep track of which spots are taken
