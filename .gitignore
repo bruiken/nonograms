@@ -1,3 +1,4 @@
 *.json
+!examples/*.json
 **/__pycache__/
 .idea/
