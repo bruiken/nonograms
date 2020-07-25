@@ -33,6 +33,7 @@ class SimpleBoxes(BaseStrategy):
                 cur_idx += 1
             for j in range(cur_idx, cur_idx + constraint):
                 result[j] = i
+            cur_idx += constraint
         return result
 
     @staticmethod

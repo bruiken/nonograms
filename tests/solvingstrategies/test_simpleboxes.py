@@ -13,4 +13,4 @@ class TestSimpleBoxes(TestCase):
         self.assertListEqual(SimpleBoxes.apply_strategy(None, [Board.Unknown, Board.Empty, Board.Unknown], [1, 1]),
                              [Board.Unknown, Board.Empty, Board.Unknown])
         self.assertListEqual(SimpleBoxes.apply_strategy(None, [Board.Unknown] * 6, [1, 4]),
-                             [Board.Unknown, Board.Unknown, Board.Cross, Board.Cross, Board.Unknown, Board.Unknown])
+                             [Board.Cross, Board.Unknown, Board.Cross, Board.Cross, Board.Cross, Board.Cross])
