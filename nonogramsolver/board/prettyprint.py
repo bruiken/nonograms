@@ -13,7 +13,9 @@ class PrintBoard:
         :param board: The board to be printed.
         """
         self.board = board
-        self.col_consts = [list(reversed(x)) for x in self.board.get_col_constraints()]
+        self.col_consts = [
+            list(reversed(x)) for x in self.board.get_col_constraints()
+        ]
         self.row_consts = self.board.get_row_constraints()
         self.max_row_const = max(len(x) for x in self.row_consts)
         self.max_col_const = max(len(x) for x in self.col_consts)
@@ -30,7 +32,8 @@ class PrintBoard:
         :return: The string representing the board.
         """
         result = self._get_col_constraint_str()
-        result += ' ' * (2 * self.max_row_const + 1) + '=' * (2 * self.board.get_width()) + '\n'
+        result += ' ' * (2 * self.max_row_const + 1) + \
+            '=' * (2 * self.board.get_width()) + '\n'
         result += self._get_rows_str()
         return result
 
@@ -45,7 +48,10 @@ class PrintBoard:
             result += ' ' * (2 * self.max_row_const + 2)
             for col in range(self.board.get_width()):
                 if len(self.col_consts[col]) >= self.max_col_const - cc_idx:
-                    result += str(self.col_consts[col][self.max_col_const - cc_idx - 1]) + ' '
+                    result += str(
+                        self.col_consts[col][self.max_col_const - cc_idx - 1]
+                    )
+                    result += ' '
                 else:
                     result += '  '
             result += '\n'
@@ -58,9 +64,10 @@ class PrintBoard:
         """
         result = ''
         for row in range(self.board.get_height()):
-            result += '  ' * (self.max_row_const - len(self.row_consts[row])) + \
+            nr_constraints = len(self.row_consts[row])
+            result += '  ' * (self.max_row_const - nr_constraints) + \
                       ' '.join(str(x) for x in self.row_consts[row]) + \
-                      ' ' * (min(1, len(self.row_consts[row]))) + 'ǁ'
+                      ' ' * (min(1, nr_constraints)) + 'ǁ'
             result += self._get_row_str(row)
         return result
 

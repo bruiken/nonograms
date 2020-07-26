@@ -23,9 +23,12 @@ class TestPrintBoard(TestCase):
 
     def test_print2(self):
         board2_str = PrintBoard(self.board2)._print()
-        self.assertEqual(board2_str, '        1         \n        1         \n        1         \n        1   1     \n'
-                                     '        1   2     \n        6   3   1 \n       ==========\n1 2 3 ǁ ? ? ? ? ?\n'
-                                     '  4 5 ǁ ? ? ? ? ?\n      ǁ ? ? ? ? ?\n    7 ǁ ? ? ? ? ?\n  4 2 ǁ ? ? ? ? ?\n'
+        self.assertEqual(board2_str, '        1         \n        1         \n'
+                                     '        1         \n        1   1     \n'
+                                     '        1   2     \n        6   3   1 \n'
+                                     '       ==========\n1 2 3 ǁ ? ? ? ? ?\n'
+                                     '  4 5 ǁ ? ? ? ? ?\n      ǁ ? ? ? ? ?\n'
+                                     '    7 ǁ ? ? ? ? ?\n  4 2 ǁ ? ? ? ? ?\n'
                                      '      ǁ ? ? ? ? ?\n')
 
     def test_print3(self):

@@ -28,8 +28,10 @@ class TestBoard(TestCase):
         self.assertEqual(self.board.get_height(), 4)
 
     def test_constraints(self):
-        self.assertListEqual(self.row_constaints, self.board.get_row_constraints())
-        self.assertListEqual(self.col_constraints, self.board.get_col_constraints())
+        self.assertListEqual(self.row_constaints,
+                             self.board.get_row_constraints())
+        self.assertListEqual(self.col_constraints,
+                             self.board.get_col_constraints())
 
     def test_set_value(self):
         self.board.set_position(0, 0, Board.Empty)
@@ -50,27 +52,43 @@ class TestBoard(TestCase):
         self.assertEqual(self.board.get_value(2, 3), Board.Unknown)
 
     def test_default_unknown(self):
-        self.assertListEqual(self.board._board, [[Board.Unknown] * 3 for _ in range(4)])
+        self.assertListEqual(self.board._board,
+                             [[Board.Unknown] * 3 for _ in range(4)])
 
     def test_get_row_col(self):
         self.board.set_position(1, 1, Board.Cross)
         self.board.set_position(1, 0, Board.Cross)
-        self.assertListEqual(self.board.get_row(0), [Board.Unknown, Board.Cross, Board.Unknown])
-        self.assertListEqual(self.board.get_row(1), [Board.Unknown, Board.Cross, Board.Unknown])
-        self.assertListEqual(self.board.get_row(2), [Board.Unknown, Board.Unknown, Board.Unknown])
-        self.assertListEqual(self.board.get_row(3), [Board.Unknown, Board.Unknown, Board.Unknown])
-        self.assertListEqual(self.board.get_column(0), [Board.Unknown, Board.Unknown, Board.Unknown, Board.Unknown])
-        self.assertListEqual(self.board.get_column(1), [Board.Cross, Board.Cross, Board.Unknown, Board.Unknown])
-        self.assertListEqual(self.board.get_column(2), [Board.Unknown, Board.Unknown, Board.Unknown, Board.Unknown])
+        self.assertListEqual(self.board.get_row(0),
+                             [Board.Unknown, Board.Cross, Board.Unknown])
+        self.assertListEqual(self.board.get_row(1),
+                             [Board.Unknown, Board.Cross, Board.Unknown])
+        self.assertListEqual(self.board.get_row(2),
+                             [Board.Unknown, Board.Unknown, Board.Unknown])
+        self.assertListEqual(self.board.get_row(3),
+                             [Board.Unknown, Board.Unknown, Board.Unknown])
+        self.assertListEqual(self.board.get_column(0),
+                             [Board.Unknown, Board.Unknown, Board.Unknown,
+                              Board.Unknown])
+        self.assertListEqual(self.board.get_column(1),
+                             [Board.Cross, Board.Cross, Board.Unknown,
+                              Board.Unknown])
+        self.assertListEqual(self.board.get_column(2),
+                             [Board.Unknown, Board.Unknown, Board.Unknown,
+                              Board.Unknown])
 
     def test_get_score(self):
         self.assertListEqual(Board.get_score([]), [])
         self.assertListEqual(Board.get_score([Board.Unknown]), [])
         self.assertListEqual(Board.get_score([Board.Empty]), [])
         self.assertListEqual(Board.get_score([Board.Cross]), [1])
-        self.assertListEqual(Board.get_score([Board.Cross, Board.Empty, Board.Cross, Board.Cross, Board.Unknown]),
-                             [1, 2])
-        self.assertListEqual(Board.get_score([Board.Cross, Board.Cross, Board.Cross, Board.Cross]), [4])
+        self.assertListEqual(
+            Board.get_score([Board.Cross, Board.Empty, Board.Cross,
+                             Board.Cross, Board.Unknown]),
+            [1, 2])
+        self.assertListEqual(
+            Board.get_score([Board.Cross, Board.Cross, Board.Cross,
+                             Board.Cross]),
+            [4])
 
     def test_check_correct(self):
         simple_board = Board(1, 1, [[]], [[]])

@@ -32,7 +32,8 @@ class TestBoardReader(TestCase):
         mock_file.assert_called_once_with('open/path/file.json', 'r')
         self.assertEqual(board.get_width(), 4)
         self.assertEqual(board.get_height(), 3)
-        self.assertListEqual(board.get_col_constraints(), [[1, 1], [], [2], [2]])
+        self.assertListEqual(board.get_col_constraints(),
+                             [[1, 1], [], [2], [2]])
         self.assertListEqual(board.get_row_constraints(), [[1, 2], [1, 1], []])
         self.assertEqual(board.get_value(0, 0), Board.Cross)
         self.assertEqual(board.get_value(2, 1), Board.Empty)
