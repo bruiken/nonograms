@@ -1,0 +1,3 @@
+- Add conversion from dict to restraints
+- Add image resizing
+- Add support for color images
