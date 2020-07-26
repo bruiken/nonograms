@@ -2,3 +2,4 @@
 !examples/*.json
 **/__pycache__/
 .idea/
+.vscode/
