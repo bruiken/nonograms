@@ -71,7 +71,7 @@ class SatSolver:
     def define_non_empty_row_constraint(self, row):
         constraints = self.board.get_row_constraints()[row]
         z3_apps = []
-        for application in self._get_possible_constraint_applications(constraints, self.board.get_width()):
+        for application in self._constraint_helper(self.board.get_width(), tuple(constraints)):
             z3_apps.append(And(*[self.z3_board[row][i] == (a == Board.Cross) for i, a in enumerate(application)]))
         self.solver.add(Or(*z3_apps))
         print('defined row', row)
@@ -93,7 +93,7 @@ class SatSolver:
     def define_non_empty_col_constraint(self, col):
         constraints = self.board.get_col_constraints()[col]
         z3_apps = []
-        for application in self._get_possible_constraint_applications(constraints, self.board.get_height()):
+        for application in self._constraint_helper(self.board.get_height(), tuple(constraints)):
             z3_apps.append(And(*[self.z3_board[i][col] == (a == Board.Cross) for i, a in enumerate(application)]))
         self.solver.add(Or(*z3_apps))
         print('defined col', col)
@@ -103,6 +103,7 @@ class SatSolver:
         print('start crunching')
         res = self.solver.check()
         print('took', time.time() - start_time, 'seconds')
+        print(self._constraint_helper.cache_info())
         if res == sat:
             self.apply_result(self.solver.model())
             return True
@@ -117,32 +118,24 @@ class SatSolver:
                 )
 
     @staticmethod
-    def _get_possible_constraint_applications(constraints, max_length):
-        res = SatSolver._constraint_helpers(constraints, [], 0, max_length)
-        return flatten(res)
-
-    @staticmethod
-    def _constraint_helpers(constraints_left, current_values, index, max_length):
-        if len(current_values) > max_length:
-            return []
-        if not constraints_left:
-            current_values += [Board.Empty] * (max_length - len(current_values))
-            return current_values
-        if len(current_values) + sum(constraints_left) + len(constraints_left) - 2 > max_length:
-            return []
+    @lru_cache()
+    def _constraint_helper(length, constraints):
+        if not constraints:
+            return [[Board.Empty] * length]
+        if sum(constraints) + len(constraints) - 1 > length:
+            return [-1]
+        c = constraints[0]
         result = []
-        no_application = SatSolver._constraint_helpers(constraints_left,
-                                                       list(current_values) + [Board.Empty],
-                                                       index + 1,
-                                                       max_length)
-        if no_application:
-            result.append(no_application)
-
-        new_values = current_values + [Board.Cross] * constraints_left[0] + ([] if len(constraints_left) == 1 else [Board.Empty])
-        application = SatSolver._constraint_helpers(constraints_left[1:],
-                                                    new_values,
-                                                    index + len(new_values) - len(current_values),
-                                                    max_length)
-        if application:
-            result.append(application)
+        apply = [Board.Cross] * c
+        new_length = length - c
+        if len(constraints) != 1:
+            new_length -= 1
+            apply += [Board.Empty]
+        for app in SatSolver._constraint_helper(new_length, constraints[1:]):
+            if app != -1:
+                result.append(apply + app)
+        apply = [Board.Empty]
+        for app in SatSolver._constraint_helper(length - 1, constraints):
+            if app != -1:
+                result.append(apply + app)
         return result
