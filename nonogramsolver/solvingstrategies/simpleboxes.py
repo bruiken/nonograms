@@ -5,10 +5,12 @@ from nonogramsolver.board import Board
 class SimpleBoxes(BaseStrategy):
     """
     Implementation of the simple boxes strategy.
-    The idea is that this strategy is the first one called, we fill each row with the constraints from left to right,
-    leaving only one space between each constraint. This maximally fills the constraints to the left.
-    Then we do the same, but starting from the right (also at the last constraint). If we then find overlap between
-    **the same constraints**, those boxes must be filled with crosses.
+    The idea is that this strategy is the first one called, we fill each row
+    with the constraints from left to right, leaving only one space between
+    each constraint. This maximally fills the constraints to the left.
+    Then we do the same, but starting from the right (also at the last
+    constraint). If we then find overlap between **the same constraints**,
+    those boxes must be filled with crosses.
     """
 
     def __init__(self, board):
@@ -23,7 +25,8 @@ class SimpleBoxes(BaseStrategy):
         """
         Applies the constraints on the value array (which must be empty).
         :param values: The empty (filled with unknown) value array.
-        :param named_constraints: List of tuples with the name of the constraint and the constraint itself.
+        :param named_constraints: List of tuples with the name of the
+        constraint and the constraint itself.
         :return: The filled value array.
         """
         result = [-1 for _ in range(len(values))]
@@ -55,7 +58,8 @@ class SimpleBoxes(BaseStrategy):
 
     def apply_strategy(self, values, constraints):
         """
-        Applies the simple boxes strategy. Note that this strategy can only be applied on an empty board (filled with
+        Applies the simple boxes strategy. Note that this strategy can only be
+        applied on an empty board (filled with
         only Unknown values).
         :param values: The values on which we apply the stategy.
         :param constraints: The constraints put on the array of values.
@@ -63,8 +67,12 @@ class SimpleBoxes(BaseStrategy):
         """
         if all([v == Board.Unknown for v in values]):
             named_constraints = [(i, c) for i, c in enumerate(constraints)]
-            row = SimpleBoxes._empty_constraint_application(values, named_constraints)
-            row_reverse = reversed(SimpleBoxes._empty_constraint_application(values, reversed(named_constraints)))
+            row = SimpleBoxes._empty_constraint_application(
+                values, named_constraints
+            )
+            row_reverse = reversed(SimpleBoxes._empty_constraint_application(
+                values, reversed(named_constraints))
+            )
             return SimpleBoxes._check_overlap(row, row_reverse)
         else:
             return values

@@ -15,8 +15,10 @@ class Board:
         Constructor for a board.
         :param width: The width of the board.
         :param height: The height of the board.
-        :param row_constraints: List of list of integers to represent the row constraints.
-        :param col_constraints: List of list of integers to represent the col constraints.
+        :param row_constraints: List of list of integers to represent the row
+                                constraints.
+        :param col_constraints: List of list of integers to represent the col
+                                constraints.
         """
         self._width = width
         self._height = height
@@ -94,7 +96,8 @@ class Board:
     def get_score(values):
         """
         Calculates the score of the given array of values.
-        The score is represented by a list of integers: each "block" of crosses is represented in that list by the
+        The score is represented by a list of integers: each "block" of
+        crosses is represented in that list by the
         length of that block.
         :param values: The array of values to get the score of.
         :return: A list of integers representing the score.
